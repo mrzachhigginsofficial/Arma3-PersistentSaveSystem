@@ -13,7 +13,7 @@ The problem is that long scenarios, such as Ravage or Antistasi, may be played i
 - **ArmA 3 updates make the save incompatible** (this can be easily fixed when a minor version is changed by decompiling > updating version > recompiling a save file, but with a major version update I wasn't able to do this workaround, the game always crashed while loading).
 - After time, **there's a lot of garbage in a save file**. You accidentally touched a building with your vehicle? Don't worry, ArmA's save system got you covered! All 0.00001 damages will be kept in the save file.
 - Examples of problems while playing Ravage:
-  - Actions such as searching for loot or sleeping slowly stop to work.
+  - Actions such as searching for loot or sleeping slowly stop working.
   - Game lag gradually increases in time, until it becomes very noticeable.
   - Weird stuff happens, such as bandit cars with dead units spawn on the road. When you try to enter, bodies disappear, so no loot for you.
   - After time, saving takes a looong time to finish, same with loading.
@@ -32,9 +32,7 @@ Remember, that this file contains **all** stored variables, also by other missio
 
 ## Can I help?
 
-Sure! If you can help with development or testing and reporting bugs, let me know on 
-
-[Discord]: https://discord.gg/77scD6EW
+Sure! If you can help with development or testing and reporting bugs, let me know on Discord.
 
 
 
