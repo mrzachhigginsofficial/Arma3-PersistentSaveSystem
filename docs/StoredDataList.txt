@@ -1,0 +1,70 @@
+In some places, you'll find for example Array<CargoArray> - in such case, it means that given array contains elements of type CargoArray.
+If specified type is not an obvious type such as String or Number, you can find a list of custom types at the bottom of the list. They were created to shorten the time it takes to keep this list updated.
+
+-----
+
+{PSave_SaveGamePrefix}.{slot}.containers - [Array] containers' data
+  class - [String] class name (see A3 function: typeOf)
+  cargo - [Array<CargoArray>] cargo data
+  posRotation - [Array<PositionRotation>] position and rotation data
+
+{PSave_SaveGamePrefix}.{slot}.environment - [Array] environment data
+  date - [Array] in-game date and time (see A3 function: date)
+  rain - [Number] rain intensity (see A3 function: rain)
+  fog - [Number] fog intensity (see A3 function: fog)
+  overcast - [Number] overcast intensity (see A3 function: overcast)
+
+{PSave_SaveGamePrefix}.{slot}.markers - [Array] map markers data
+  name - [String] marker's name (see A3 function: getMarkerName)
+  alpha - [Number] marker's alpha (see A3 function: getMarkerAlpha)
+  brush - [String] marker's brush  (see A3 function: getMarkerBrush)
+  color - [String] marker's color (see A3 function: getMarkerColor)
+  dir - [Number] marker's direction (see A3 function: getMarkerDir)
+  position - [Array] position (see A3 function: getMarkerPos)
+  shape - [String] marker's shape (see A3 function: getMarkerShape)
+  size - [Array] marker's size (see A3 function: getMarkerSize)
+  text - [String] marker's text (see A3 function: getMarkerText)
+  type - [String] marker's type (see A3 function: getMarkerType)
+
+{PSave_SaveGamePrefix}.{slot}.metadata - [Array] metadata (information about save itself)
+  systemTime - [Array] date and time of save (see A3 function: systemTime)
+
+{PSave_SaveGamePrefix}.{slot}.player - [Array] player's data
+  see: {PSave_SaveGamePrefix}.{slot}.units (same data is stored for player)
+
+{PSave_SaveGamePrefix}.{slot}.units - [Array] units' data
+  class - [String] class name (see A3 function: typeOf)
+  damages - [Array] hitpoints (see A3 function: getAllHitPointsDamage function)
+  posRotation - [Array<PositionRotation>] position and rotation data
+  loadout - [Array] unit's loadout (see A3 function: getUnitLoadout function)
+  side - [String] unit's side (see A3 function: side)
+  skill - [Number] unit's skill (see A3 function: skill)
+  name - [Array<String>] splitted unit's name (see A3 function: name / splitString)
+  face - [String] unit's face (see A3 function: face)
+  speaker - [String] unit's speaker (see A3 function: speaker)
+  pitch - [Number] unit's pitch (see A3 function: pitch)
+  rating - [Number] unit's rating (see A3 function: rating)
+  stamina - [Number] unit's stamina (see A3 function: stamina)
+  fatigue - [Number] unit's fatigue (see A3 function: fatigue)
+  group - [Array] (filled only, when unit is a leader) unit's group (contains only unit's under command)
+    see: {PSave_SaveGamePrefix}.{slot}.units (elements of array consist of the same data for each stored unit)
+
+{PSave_SaveGamePrefix}.{slot}.vehicles - [Array] vehicles' data
+  class - [String] class name (see A3 function: typeOf)
+  fuel - [Number] fuel left in vehicle (see A3 function: fuel)
+  damages - [Array] hitpoints (see A3 function: getAllHitPointsDamage function)
+  cargo - [Array<CargoArray>] cargo data
+  posRotation - [Array<PositionRotation>] position and rotation data
+
+-----
+
+Common types:
+
+CargoArray:
+  items - [Array] items in cargo (see A3 function: getItemCargo)
+  magazines - [Array] magazines in cargo (see A3 function: getMagazineCargo)
+  weapons - [Array] weapons in cargo (see A3 function: getWeaponCargo)
+
+PositionRotation:
+  [0][0..2] (see A3 function: getPosATL)
+  [1]- [Number] direction (see A3 function: getDir)

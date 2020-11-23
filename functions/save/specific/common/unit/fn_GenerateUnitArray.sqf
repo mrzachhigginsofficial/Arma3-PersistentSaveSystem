@@ -1,0 +1,31 @@
+/*
+Creates a data array for given _unit.
+If the unit _isLeader, then his group will also be added to a resulting array.
+
+Returns a generated data array.
+*/
+
+params ["_unit", "_isLeader"];
+
+private _unitArray = [];
+
+_unitArray pushBack ["class", typeOf _unit];
+_unitArray pushBack ["damages", getAllHitPointsDamage _unit];
+_unitArray pushBack ["posRotation", [_unit] call skhpersist_fnc_GeneratePositionAndRotationArray];
+_unitArray pushBack ["loadout", getUnitLoadout _unit];
+_unitArray pushBack ["side", side _unit];
+_unitArray pushBack ["skill", skill _unit];
+_unitArray pushBack ["name", (name _unit) splitString " "];
+_unitArray pushBack ["face", face _unit];
+_unitArray pushBack ["speaker", speaker _unit];
+_unitArray pushBack ["pitch", pitch _unit];
+_unitArray pushBack ["rating", rating _unit];
+_unitArray pushBack ["stamina", getStamina _unit];
+_unitArray pushBack ["fatigue", getFatigue _unit];
+
+if (_isLeader) then
+{
+    _unitArray pushBack ["group", [_unit] call skhpersist_fnc_GenerateGroupArray];
+};
+
+_unitArray;
