@@ -17,11 +17,7 @@ params ["_slot"];
 [_slot] call skhpersist_fnc_SaveMapMarkers;
 
 {
-	[_slot] call compile preprocessFileLineNumbers _x;
-} forEach PSave_CustomSaveScripts;
-
-{
-	[_slot] call _x;
+	[_x, [_slot]] call skhpersist_fnc_CallFunctionFromFileOrCode;
 } forEach PSave_OnSaveEH;
 
 saveProfileNamespace;

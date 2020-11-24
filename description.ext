@@ -2,6 +2,12 @@ class CfgFunctions
 {
 	class skhpersist
 	{
+		class save_eh
+		{
+			file = "functions\save\eh";
+			class CallFunctionFromFileOrCode {};
+		};
+
 		class save_main
 		{
 		    file = "functions\save\main";

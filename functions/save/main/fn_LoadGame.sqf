@@ -14,11 +14,7 @@ params ["_slot"];
 [_slot] call skhpersist_fnc_LoadMapMarkers;
 
 {
-	[_slot] call compile preprocessFileLineNumbers _x;
-} forEach PSave_CustomLoadScripts;
-
-{
-	[_slot] call _x;
+	[_x, [_slot]] call skhpersist_fnc_CallFunctionFromFileOrCode;
 } forEach PSave_OnLoadEH;
 
 hint format ["Persistent load done!"];
