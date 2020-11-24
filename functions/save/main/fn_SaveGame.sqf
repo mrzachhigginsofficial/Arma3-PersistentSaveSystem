@@ -4,6 +4,8 @@ Performs a persistent save on given _slot.
 
 params ["_slot"];
 
+PSave_SaveInProgress = true;
+
 [format ["Saving data on slot %1", _slot]] call skhpersist_fnc_LogToRPT;
 
 [_slot] call skhpersist_fnc_ClearSave;
@@ -21,6 +23,8 @@ params ["_slot"];
 } forEach PSave_OnSaveEH;
 
 saveProfileNamespace;
+
+PSave_SaveInProgress = false;
 
 hint format ["Persistent save done!"];
 [format ["Saving data to slot %1 done.", _slot]] call skhpersist_fnc_LogToRPT;

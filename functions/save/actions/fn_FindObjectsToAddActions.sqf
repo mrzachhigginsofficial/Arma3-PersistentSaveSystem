@@ -6,45 +6,47 @@ object will be stored in specified _array, which is further processed during sav
 */
 params ["_radius", "_objectsType", "_array"];
 
-private _AddActionToMarkForSave =
+private _AddAction =
 {
-    params ["_object", "_array"];
+    params ["_text", "_function", "_object", "_array", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
 
-    private _AddActions = {
-        params ["_object", "_parameters"];
-        
-        private _array = _parameters select 0;
-        private _actions = [];
-        
-        if (!(_object in _array)) then
-        {
-            _actions pushBack (player addAction [format ["Add to persistent save (%1)", typeOf _object],
-            {
-                private _object = _this select 3 select 0;
-                private _unit = _this select 3 select 1;
-                private _array = _this select 3 select 2;
-                [_object, _array] call skhpersist_fnc_MarkForSave;
-                _unit removeAction (_this select 2);
-            },
-            [_object, player, _array]]);
-        }
-        else
-        {
-            _actions pushBack (player addAction [format ["Remove from persistent save (%1)", typeOf _object],
-            {
-                private _object = _this select 3 select 0;
-                private _unit = _this select 3 select 1;
-                private _array = _this select 3 select 2;
-                [_object, _array] call skhpersist_fnc_UnmarkForSave;
-                _unit removeAction (_this select 2);
-            },
-            [_object, player, _array]]);
-        };
-        
-        _actions;
-    };
+    _object addAction [_text, 
+    {
+        private _thisAction = _this select 2;
 
-    [_object, 8, 45, [_array], _AddActions] call skhpersist_fnc_HandlePlayerLookingAtObject;
+        private _params = _this select 3;
+        private _object = _params select 0;
+        private _array = _params select 1;
+        private _function = _params select 2;
+        private _CurrentFunction = _params select 3;
+        private _MirrorFunction = _params select 4;
+        private _AddAction = _params select 5;
+
+        [_object, _array] call _function;
+        [_object, _array, _MirrorFunction, _CurrentFunction, _AddAction] call _MirrorFunction;
+        _object removeAction _thisAction;
+    }, 
+    [_object, _array, _function, _CurrentFunction, _MirrorFunction, _AddAction], 1.5, false, true, "", "true", 5];
+};
+
+private _AddMarkAction =
+{
+    params ["_object", "_array", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
+
+    ["Mark for persistent save",
+    {
+        [_object, _array] call skhpersist_fnc_MarkForSave;
+    }, _object, _array, _CurrentFunction, _MirrorFunction, _AddAction] call _AddAction;
+};
+
+private _AddUnmarkAction =
+{
+    params ["_object", "_array", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
+
+    ["Unmark from persistent save",
+    {
+        [_object, _array] call skhpersist_fnc_UnmarkForSave;
+    }, _object, _array, _CurrentFunction, _MirrorFunction, _AddAction] call _AddAction;
 };
 
 private _handledObjects = [];
@@ -56,11 +58,30 @@ while {alive player} do
     sleep 1;
     private _objectsArray = player nearObjects [_objectsType, _radius];
     
+    if (!PSave_LoadInProgress) then
     {
-        if (!(_x in _handledObjects)) then
         {
-            [_x, _array] spawn _AddActionToMarkForSave;
-            _handledObjects pushBack _x;
-        };
-    } forEach _objectsArray;
+            if (!(_x in _handledObjects)) then
+            {
+                if (!(_x in _array)) then
+                {
+                    [_x, _array, _AddMarkAction, _AddUnmarkAction, _AddAction] call _AddMarkAction;
+                }
+                else
+                {
+                    [_x, _array, _AddUnmarkAction, _AddMarkAction, _AddAction] call _AddUnmarkAction;
+                };
+
+                _handledObjects pushBack _x;
+            };
+        } forEach _objectsArray;
+
+        // Clear null values.
+        {
+            if (isNil { _x}) then
+            {
+                _handledObjects deleteAt _forEachIndex;
+            };
+        } forEach _handledObjects;
+    };
 };

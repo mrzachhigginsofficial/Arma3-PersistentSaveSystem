@@ -13,9 +13,9 @@ private _units = ["units", _slot] call skhpersist_fnc_LoadData;
     {
         deleteVehicle _x;
     } forEach (units _x);
-} forEach PSave_CustomUnitsToSave;
 
-PSave_CustomUnitsToSave = [];
+    PSave_CustomUnitsToSave deleteAt _forEachIndex;
+} forEach PSave_CustomUnitsToSave;
 
 {
     private _unit = [nil, _x, nil] call skhpersist_fnc_LoadUnitData;    

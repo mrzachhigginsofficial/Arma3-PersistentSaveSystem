@@ -52,3 +52,9 @@ PSave_OnSaveEH pushBack "mods\ravage\fn_SaveRavageData.sqf";
 // Looks for cars near the player in a loop.
 // Each car will get an action, which will allow to mark it for save.
 [1000, "Car", PSave_CustomVehiclesToSave] spawn skhpersist_fnc_FindObjectsToAddActions;
+
+// ------------------------------------------------------------------------------------
+// DON'T CHANGE THESE VARIABLES MANUALLY
+// ------------------------------------------------------------------------------------
+PSave_LoadInProgress = false;
+PSave_SaveInProgress = false;

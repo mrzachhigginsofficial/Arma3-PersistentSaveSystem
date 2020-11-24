@@ -27,15 +27,6 @@ class CfgFunctions
 		    class MarkForSave {};
 		    class UnmarkForSave {};
 		};
-		
-		class save_actions_common
-		{
-		    file = "functions\save\actions\common";
-		    class HandlePlayerLookingAtObject {};
-		    class IsPlayerLookingAtObject {};
-		    class WaitUntilPlayerDoesNotLookAtObject {};
-		    class WaitUntilPlayerLooksAtObject {};
-		};
 
 		class save_log
 		{

@@ -11,9 +11,8 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
 
 {
     deleteVehicle _x;
+    PSave_CustomVehiclesToSave deleteAt _forEachIndex;
 } forEach PSave_CustomVehiclesToSave;
-
-PSave_CustomVehiclesToSave = [];
 
 {
     private _class = [_x, "class"] call skhpersist_fnc_GetByKey;

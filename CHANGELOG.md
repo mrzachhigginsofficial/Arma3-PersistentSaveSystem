@@ -5,6 +5,9 @@
 - Added basic Ravage mod handling.
 - Added skhpersist_fnc_LogToRPT, which allows to store data to .RPT file with prefix being added automatically.
 - Added logging to .RPT in strategic places to help with bug analysis.
+- Magazines in containers are now stored with ammo left (this also fixes for example fuel canisters in Ravage).
+- Added handling for both paths to scripts and a code in event handlers.
+- Removed custom code to add actions for marking / unmarking vehicles (addAction is all we need).
 
 ## v0.1.0 (pre-release)
 
