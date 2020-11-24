@@ -4,7 +4,7 @@ Loads the game state on given save _slot.
 
 params ["_slot"];
 
-[] call _RemoveObjectsBeforeLoad;
+[format ["Loading data from slot %1", _slot]] call skhpersist_fnc_LogToRPT;
 
 [_slot] call skhpersist_fnc_LoadPlayer;
 [_slot] call skhpersist_fnc_LoadCustomContainers;
@@ -14,7 +14,12 @@ params ["_slot"];
 [_slot] call skhpersist_fnc_LoadMapMarkers;
 
 {
-	[] call _x;
+	[_slot] call compile preprocessFileLineNumbers _x;
+} forEach PSave_CustomLoadScripts;
+
+{
+	[_slot] call _x;
 } forEach PSave_OnLoadEH;
 
 hint format ["Persistent load done!"];
+[format ["Loading data from slot %1 done.", _slot]] call skhpersist_fnc_LogToRPT;

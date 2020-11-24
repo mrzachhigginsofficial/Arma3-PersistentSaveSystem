@@ -3,6 +3,8 @@ Handles adding and removing mark / unmark actions, when player is near an _objec
 */
 params ["_object", "_maxDistance", "_maxAngleDifference", "_actionParameters", "_ActionFunction"];
 
+[format ["Handling player looking at object %1", _object]] call skhpersist_fnc_LogToRPT;
+
 while {alive player} do
 {
     [_object, _maxDistance, _maxAngleDifference] call skhpersist_fnc_WaitUntilPlayerLooksAtObject;

@@ -2,18 +2,12 @@
 Generates radio triggers for loading and saving.
 */
 
-private _DeleteExistingLoadTriggers =
-{
-	{
-		if (!(isNil { _x })) then
-		{
-			deleteVehicle _x;
-		};
-	} forEach TriggerSaveSystem_SlotTriggers;
-};
+params ["_slot"];
 
 private _CreateLoadTriggers =
 {
+	["Adding radio triggers."] call skhpersist_fnc_LogToRPT;
+
 	private _AddLeadingZeroToDateNumber =
 	{
 		params ["_number", "_leadingZeroes"];
@@ -107,5 +101,5 @@ private _CreateLoadTriggers =
 	};
 };
 
-[] call _DeleteExistingLoadTriggers;
+[] call skhpersist_fnc_ClearLoadTriggers;
 [] call _CreateLoadTriggers;

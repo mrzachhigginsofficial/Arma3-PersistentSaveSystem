@@ -10,6 +10,8 @@ params ["_leader"];
 private _groupArray = units group _leader;
 private _unitsData = [];
 
+[format ["Generating group array for leader %1.", _leader]] call skhpersist_fnc_LogToRPT;
+
 {
     if (_x != _leader) then
     {

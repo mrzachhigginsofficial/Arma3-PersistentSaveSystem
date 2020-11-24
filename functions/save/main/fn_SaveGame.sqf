@@ -4,6 +4,8 @@ Performs a persistent save on given _slot.
 
 params ["_slot"];
 
+[format ["Saving data on slot %1", _slot]] call skhpersist_fnc_LogToRPT;
+
 [_slot] call skhpersist_fnc_ClearSave;
 
 [_slot] call skhpersist_fnc_SaveMetadata;
@@ -15,9 +17,14 @@ params ["_slot"];
 [_slot] call skhpersist_fnc_SaveMapMarkers;
 
 {
-	[] call _x;
+	[_slot] call compile preprocessFileLineNumbers _x;
+} forEach PSave_CustomSaveScripts;
+
+{
+	[_slot] call _x;
 } forEach PSave_OnSaveEH;
 
 saveProfileNamespace;
 
 hint format ["Persistent save done!"];
+[format ["Saving data to slot %1 done.", _slot]] call skhpersist_fnc_LogToRPT;

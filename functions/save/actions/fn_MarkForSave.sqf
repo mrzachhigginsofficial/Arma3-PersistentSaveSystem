@@ -6,6 +6,7 @@ params ["_object", "_array"];
 
 if (_array find _object == -1) then
 {
+    [format ["Marking object %1.", _object]] call skhpersist_fnc_LogToRPT;
     _array pushBack _object;
     hint format ["%1 will be saved!", typeOf _object];
 };

@@ -5,6 +5,8 @@ Data is loaded from given save _slot.
 
 params ["_slot"];
 
+[format ["Loading environment info from save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
+
 private _environment = ["environment", _slot] call skhpersist_fnc_LoadData;
 
 private _date = [_environment, "date"] call skhpersist_fnc_GetByKey;

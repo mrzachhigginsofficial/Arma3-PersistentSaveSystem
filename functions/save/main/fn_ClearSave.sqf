@@ -10,10 +10,12 @@ private "_variables";
 
 if (isNil { _slot }) then
 {
+	["Clearing all saves."] call skhpersist_fnc_LogToRPT;
 	_variables = [] call skhpersist_fnc_ListExistingVariables;
 }
 else
 {
+	[format ["Clearing save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
 	_variables = [_slot] call skhpersist_fnc_ListExistingVariables;
 };
 
@@ -22,9 +24,5 @@ else
 } forEach _variables;
 
 saveProfileNamespace;
-
-{
-	[] call _x;
-} forEach PSave_OnClearEH;
 
 hint format ["Save has been cleaned up!"];

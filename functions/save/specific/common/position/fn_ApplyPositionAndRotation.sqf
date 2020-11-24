@@ -4,6 +4,8 @@ Applies position and rotation _array to given _entity.
 
 params ["_entity", "_array"];
 
+[format ["Applying position and rotation to entity %1.", _entity]] call skhpersist_fnc_LogToRPT;
+
 private _posATL = _array select 0;
 private _dir = _array select 1;
 

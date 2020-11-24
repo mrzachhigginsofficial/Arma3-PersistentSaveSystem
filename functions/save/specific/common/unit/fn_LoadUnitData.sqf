@@ -70,6 +70,8 @@ private _RestoreUnitsName =
     _unit setName [_joinedNames, _firstName, _surname];
 };
 
+[format ["Loading unit data for unit %1.", _unit]] call skhpersist_fnc_LogToRPT;
+
 private _class = [_unitData, "class"] call skhpersist_fnc_GetByKey;
 private _side = [_unitData, "side"] call skhpersist_fnc_GetByKey;
 private _group = [_unitData, "group"] call skhpersist_fnc_GetByKey;

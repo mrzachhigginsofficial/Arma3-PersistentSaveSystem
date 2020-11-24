@@ -30,6 +30,12 @@ class CfgFunctions
 		    class WaitUntilPlayerDoesNotLookAtObject {};
 		    class WaitUntilPlayerLooksAtObject {};
 		};
+
+		class save_log
+		{
+			file = "functions\save\log";
+			class LogToRPT {};
+		};
 		
 		class save_specific
 		{
@@ -86,6 +92,7 @@ class CfgFunctions
 		class save_trigger_savesystem
 		{
 			file = "functions\save\trigger\savesystem";
+			class ClearLoadTriggers {};
 			class CreateSaveTrigger {};
 			class InitTriggerSaveSystem {};
 			class SaveGameOnNextSlot {};

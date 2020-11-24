@@ -5,6 +5,8 @@ Data is loaded from given save _slot.
 
 params ["_slot"];
 
+[format ["Loading custom containers from save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
+
 private _containers = ["containers", _slot] call skhpersist_fnc_LoadData;
 
 {

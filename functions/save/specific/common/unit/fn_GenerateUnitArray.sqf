@@ -7,6 +7,8 @@ Returns a generated data array.
 
 params ["_unit", "_isLeader"];
 
+[format ["Generating unit array for unit %1 (leader: %2).", _unit, _isLeader]] call skhpersist_fnc_LogToRPT;
+
 private _unitArray = [];
 
 _unitArray pushBack ["class", typeOf _unit];

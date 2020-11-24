@@ -49,6 +49,8 @@ private _AddActionToMarkForSave =
 
 private _handledObjects = [];
 
+[format ["Looking for objects of type %1 to add mark actions to.", _objectsType]] call skhpersist_fnc_LogToRPT;
+
 while {alive player} do
 {
     sleep 1;

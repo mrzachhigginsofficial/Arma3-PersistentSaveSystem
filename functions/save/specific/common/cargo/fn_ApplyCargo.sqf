@@ -4,6 +4,8 @@ Adds cargo from _cargoArray to given _container.
 
 params ["_container", "_cargoArray"];
 
+[format ["Applying cargo array to container %1.", _container]] call skhpersist_fnc_LogToRPT;
+
 clearItemCargo _container;
 clearMagazineCargo _container;
 clearWeaponCargo _container;

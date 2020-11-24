@@ -12,6 +12,15 @@ params ["_slot"];
 private _variables = allVariables profileNamespace;
 private _result = [];
 
+if (isNil { _slot }) then
+{
+    ["Listing variables for all saves."] call skhpersist_fnc_LogToRPT;
+}
+else
+{
+    [format ["Listing variables for save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
+};
+
 {
     private _splittedVariable = _x splitString ".";
     
