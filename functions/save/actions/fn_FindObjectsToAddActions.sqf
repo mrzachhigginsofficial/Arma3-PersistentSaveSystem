@@ -44,7 +44,7 @@ private _AddActionToMarkForSave =
         _actions;
     };
 
-    [_object, 5, 25, [_array], _AddActions] call skhpersist_fnc_HandlePlayerLookingAtObject;
+    [_object, 8, 45, [_array], _AddActions] call skhpersist_fnc_HandlePlayerLookingAtObject;
 };
 
 private _handledObjects = [];
