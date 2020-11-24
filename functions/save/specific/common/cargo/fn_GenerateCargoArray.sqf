@@ -6,24 +6,26 @@ Returns a generated cargo array.
 
 params ["_container"];
 
-private _CallEventHandlers =
+private _GetBackpacksArray =
 {
-    params ["_itemType", "_array"];
+    params ["_container"];
 
-    private _itemNamesArray = (_array select 1);
+    private _backpacksArray = [];
+    private _backpacksInContainer = everyBackpack _container;
 
     {
-        private _function = _x;
-        private _additionalArray = [];
+        private _backpackClass = typeOf _x;
+        private _cargo = [_x] call skhpersist_fnc_GenerateCargoArray;
 
-        {
-            private _additionalData = [_itemType, _x] call compile preprocessFileLineNumbers _function;
-            _additionalArray pushBack _additionalData;
-        } forEach (_itemNamesArray select 0);
+        private _currentBackpackArray = [];
 
-        _array pushBack _additionalArray;
+        _currentBackpackArray pushBack ["class", _backpackClass];
+        _currentBackpackArray pushBack ["cargo", _cargo];
 
-    } forEach PSave_OnCargoDataSavedEH;
+        _backpacksArray pushBack _currentBackpackArray;
+    } forEach _backpacksInContainer;
+    
+    _backpacksArray;
 };
 
 [format ["Generating cargo array for container %1.", _container]] call skhpersist_fnc_LogToRPT;
@@ -31,16 +33,16 @@ private _CallEventHandlers =
 private _itemsArray = ["items", getItemCargo _container];
 private _magazinesArray = ["magazines", magazinesAmmoCargo _container];
 private _weaponsArray = ["weapons", weaponsItemsCargo _container];
-
-["ITEM", _itemsArray] call _CallEventHandlers;
-["MAGAZINE", _magazinesArray] call _CallEventHandlers;
-["WEAPON", _weaponsArray] call _CallEventHandlers;
+private _backpacksArray = ["backpacks", [_container] call _GetBackpacksArray];
+//private _vestsArray = ["vests", [_container] call _GetBackpacksArray];
+//private _uniformsArray = ["uniforms", [_container] call _GetBackpacksArray];
 
 private _cargo =
 [
     _itemsArray,
     _magazinesArray,
-    _weaponsArray
+    _weaponsArray,
+    _backpacksArray
 ];
 
 _cargo;

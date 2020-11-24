@@ -24,15 +24,6 @@ PSave_OnLoadEH = [];
 // Params: _slot (save slot)
 PSave_OnSaveEH = [];
 
-// Functions to call before an item / magazine / weapon is saved.
-// Params: itemType (ITEM, MAGAZINE or WEAPON), itemName (class name)
-// Expected return type: array with additional data for an item (empty, if no data is necessary)
-PSave_OnCargoDataSavedEH = [];
-
-// Functions to call before an item / magazine / weapon is loaded.
-// Params: itemType (ITEM, MAGAZINE or WEAPON), itemName (class name)
-PSave_OnCargoDataLoadedEH = [];
-
 // ------------------------------------------------------------------------------------
 // MODS - RAVAGE
 // ------------------------------------------------------------------------------------
