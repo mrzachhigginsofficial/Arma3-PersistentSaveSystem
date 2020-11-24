@@ -29,7 +29,7 @@ private _CallEventHandlers =
 [format ["Generating cargo array for container %1.", _container]] call skhpersist_fnc_LogToRPT;
 
 private _itemsArray = ["items", getItemCargo _container];
-private _magazinesArray = ["magazines", getMagazineCargo _container];
+private _magazinesWithAmmoArray = ["magazines", magazinesAmmoCargo _container];
 private _weaponsArray = ["weapons", getWeaponCargo _container];
 
 ["ITEM", _itemsArray] call _CallEventHandlers;
@@ -39,7 +39,7 @@ private _weaponsArray = ["weapons", getWeaponCargo _container];
 private _cargo =
 [
     _itemsArray,
-    _magazinesArray,
+    _magazinesWithAmmoArray,
     _weaponsArray
 ];
 
