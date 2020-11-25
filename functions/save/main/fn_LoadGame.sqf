@@ -11,6 +11,7 @@ PSave_LoadInProgress = true;
 [_slot] call skhpersist_fnc_LoadPlayer;
 [_slot] call skhpersist_fnc_LoadCustomContainers;
 [_slot] call skhpersist_fnc_LoadCustomUnits;
+[_slot] call skhpersist_fnc_LoadCustomVariables;
 [_slot] call skhpersist_fnc_LoadCustomVehicles;
 [_slot] call skhpersist_fnc_LoadEnvironmentInfo;
 [_slot] call skhpersist_fnc_LoadMapMarkers;
