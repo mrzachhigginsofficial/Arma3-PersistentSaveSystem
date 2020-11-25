@@ -27,5 +27,5 @@ saveProfileNamespace;
 
 PSave_SaveInProgress = false;
 
-hint format ["Persistent save done!"];
+hint format ["Persistent save done on slot %1.", _slot];
 [format ["Saving data to slot %1 done.", _slot]] call skhpersist_fnc_LogToRPT;

@@ -13,7 +13,7 @@ private _unitsData = [];
 [format ["Generating group array for leader %1.", _leader]] call skhpersist_fnc_LogToRPT;
 
 {
-    if (_x != _leader) then
+    if (_x != _leader && alive _x) then
     {
         _unitsData pushBack ([_x, false] call skhpersist_fnc_GenerateUnitArray);
     };

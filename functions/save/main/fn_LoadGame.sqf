@@ -22,5 +22,5 @@ PSave_LoadInProgress = true;
 
 PSave_LoadInProgress = false;
 
-hint format ["Persistent load done!"];
+hint format ["Persistent load done from slot %1", _slot];
 [format ["Loading data from slot %1 done.", _slot]] call skhpersist_fnc_LogToRPT;

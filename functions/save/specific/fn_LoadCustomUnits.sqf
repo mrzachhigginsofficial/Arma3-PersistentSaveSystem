@@ -18,6 +18,6 @@ private _units = ["units", _slot] call skhpersist_fnc_LoadData;
 } forEach PSave_CustomUnitsToSave;
 
 {
-    private _unit = [nil, _x, nil] call skhpersist_fnc_LoadUnitData;    
-    [_unit, PSave_CustomUnitsToSave, false] call skhpersist_fnc_MarkForSave;
+    private _unit = [nil, _x, nil] call skhpersist_fnc_LoadUnitData;
+    [_unit] call skhpersist_fnc_AddCustomUnitToSave;
 } forEach _units;

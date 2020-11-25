@@ -37,6 +37,7 @@ class CfgFunctions
 		class save_specific
 		{
 		    file = "functions\save\specific";
+		    class AddCustomUnitToSave {};
 		    class LoadCustomContainers {};
 		    class SaveCustomContainers {};
 		    class LoadCustomUnits {};
