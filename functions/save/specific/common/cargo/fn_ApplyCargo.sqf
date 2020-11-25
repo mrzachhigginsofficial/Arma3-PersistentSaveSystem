@@ -9,6 +9,7 @@ params ["_container", "_cargoArray"];
 clearItemCargo _container;
 clearMagazineCargo _container;
 clearWeaponCargo _container;
+clearBackpackCargo _container;
 
 private _IsContainerEmpty =
 {
@@ -17,6 +18,7 @@ private _IsContainerEmpty =
     if (!(magazineCargo _container isEqualTo [])) exitWith { false };
     if (!(weaponCargo _container isEqualTo [])) exitWith { false };
     if (!(itemCargo _container isEqualTo [])) exitWith { false };
+    if (!(backpackCargo _container isEqualTo [])) exitWith { false };
 
     true;
 };
@@ -53,9 +55,33 @@ private _AddAllWeaponsToCargo =
     } forEach _cargoArray;
 };
 
-private _AddAllBackpacksToCargo =
+private _AddAllContainersToCargo =
 {
     params ["_container", "_cargoArray"];
+
+    {
+        private _class = [_x, "class"] call skhpersist_fnc_GetByKey;
+        private _cargo = [_x, "cargo"] call skhpersist_fnc_GetByKey;
+
+        // There's no need to add a container (such as uniform or vest) - it was already done
+        // when adding items.
+        
+        {
+            private _currentClass = _x select 0;
+            private _currentInstance = _x select 1;
+
+            if (_currentClass == _class && [_currentInstance] call _IsContainerEmpty) exitWith
+            {
+                [_currentInstance, _cargo] call skhpersist_fnc_ApplyCargo;
+            };
+        } forEach (everyContainer _container);
+
+    } forEach _cargoArray;
+};
+
+private _AddAllBackpacksToCargo =
+{
+params ["_container", "_cargoArray"];
 
     {
         private _class = [_x, "class"] call skhpersist_fnc_GetByKey;
@@ -64,7 +90,7 @@ private _AddAllBackpacksToCargo =
         _container addBackpackCargo [_class, 1];
 
         {
-            if (typeOf _x == _class && [_x] call _IsContainerEmpty) then
+            if (typeOf _x == _class && [_x] call _IsContainerEmpty) exitWith
             {
                 [_x, _cargo] call skhpersist_fnc_ApplyCargo;
             };
@@ -76,9 +102,11 @@ private _AddAllBackpacksToCargo =
 private _itemsArray = [_cargoArray, "items"] call skhpersist_fnc_GetByKey;
 private _magazinesArray = [_cargoArray, "magazines"] call skhpersist_fnc_GetByKey;
 private _weaponsArray = [_cargoArray, "weapons"] call skhpersist_fnc_GetByKey;
+private _containersArray = [_cargoArray, "containers"] call skhpersist_fnc_GetByKey;
 private _backpacksArray = [_cargoArray, "backpacks"] call skhpersist_fnc_GetByKey;
 
 [_container, _itemsArray, { params ["_c", "_n", "_cnt"]; _c addItemCargo [_n, _cnt]; }] call _AddAllToCargo;
 [_container, _magazinesArray] call _AddAllMagazinesToCargo;
 [_container, _weaponsArray] call _AddAllWeaponsToCargo;
+[_container, _containersArray] call _AddAllContainersToCargo;
 [_container, _backpacksArray] call _AddAllBackpacksToCargo;
