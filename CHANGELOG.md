@@ -9,6 +9,7 @@
 - Added handling for both paths to scripts and a code in event handlers.
 - Removed custom code to add actions for marking / unmarking vehicles (addAction is all we need).
 - Uniforms, vests and backpacks inside a vehicle's cargo are now stored and restored along with their own cargo.
+- Turrets ammo in vehicles is now stored and restored.
 
 ## v0.1.0 (pre-release)
 
