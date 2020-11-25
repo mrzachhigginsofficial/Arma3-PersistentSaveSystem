@@ -45,6 +45,6 @@ else
 	}
 	else
 	{
-		[format ["Unit %1 already in array.", _unit]] call skhpersist_fnc_LogToRPT;
+	[format ["Unit %1 is already added for saving.", _unit]] call skhpersist_fnc_LogToRPT;
 	};
 };

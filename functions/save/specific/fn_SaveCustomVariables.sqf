@@ -7,15 +7,14 @@ params ["_slot"];
 
 [format ["Saving custom variables to save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
 
-private _missionNamespaceVariables = [];
+private _allVariables = [];
 
 {
-    _missionNamespaceVariables pushBack [_x, missionNamespace getVariable _x];
-} forEach PSave_CustomMissionNamespaceVariablesToSave;
+	private _namespace = _x select 0;
+	private _name = _x select 1;
+	private _value = [_namespace, _name] call skhpersist_fnc_LoadVariableFromNamespace;
 
-private _allVariables =
-[
-	["missionNamespace", _missionNamespaceVariables]
-];
+    _allVariables pushBack [_namespace, _name, _value];
+} forEach PSave_CustomVariablesToSave;
 
 ["variables", _allVariables, _slot] call skhpersist_fnc_SaveData;
