@@ -4,11 +4,11 @@ Only objects found in given _radius will be processed by this function.
 It adds an action, which will allow the player to persist them - in case player performs an action,
 object will be stored in specified _array, which is further processed during saving.
 */
-params ["_radius", "_objectsType", "_array"];
+params ["_radius", "_objectsType", "_GetArrayFunction"];
 
 private _AddAction =
 {
-    params ["_text", "_function", "_object", "_array", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
+    params ["_text", "_Function", "_object", "_GetArrayFunction", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
 
     _object addAction [_text, 
     {
@@ -16,37 +16,37 @@ private _AddAction =
 
         private _params = _this select 3;
         private _object = _params select 0;
-        private _array = _params select 1;
-        private _function = _params select 2;
+        private _GetArrayFunction = _params select 1;
+        private _Function = _params select 2;
         private _CurrentFunction = _params select 3;
         private _MirrorFunction = _params select 4;
         private _AddAction = _params select 5;
 
-        [_object, _array] call _function;
-        [_object, _array, _MirrorFunction, _CurrentFunction, _AddAction] call _MirrorFunction;
+        [_object, _GetArrayFunction] call _Function;
+        [_object, _GetArrayFunction, _MirrorFunction, _CurrentFunction, _AddAction] call _MirrorFunction;
         _object removeAction _thisAction;
     }, 
-    [_object, _array, _function, _CurrentFunction, _MirrorFunction, _AddAction], 1.5, false, true, "", "true", 5];
+    [_object, _GetArrayFunction, _Function, _CurrentFunction, _MirrorFunction, _AddAction], 1.5, false, true, "", "true", 5];
 };
 
 private _AddMarkAction =
 {
-    params ["_object", "_array", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
+    params ["_object", "_GetArrayFunction", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
 
     ["Mark for persistent save",
     {
-        [_object, _array] call skhpersist_fnc_MarkForSave;
-    }, _object, _array, _CurrentFunction, _MirrorFunction, _AddAction] call _AddAction;
+        [_object, [] call _GetArrayFunction] call skhpersist_fnc_MarkForSave;
+    }, _object, _GetArrayFunction, _CurrentFunction, _MirrorFunction, _AddAction] call _AddAction;
 };
 
 private _AddUnmarkAction =
 {
-    params ["_object", "_array", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
+    params ["_object", "_GetArrayFunction", "_CurrentFunction", "_MirrorFunction", "_AddAction"];
 
     ["Unmark from persistent save",
     {
-        [_object, _array] call skhpersist_fnc_UnmarkForSave;
-    }, _object, _array, _CurrentFunction, _MirrorFunction, _AddAction] call _AddAction;
+        [_object, [] call _GetArrayFunction] call skhpersist_fnc_UnmarkForSave;
+    }, _object, _GetArrayFunction, _CurrentFunction, _MirrorFunction, _AddAction] call _AddAction;
 };
 
 private _handledObjects = [];
@@ -63,13 +63,13 @@ while {alive player} do
         {
             if (!(_x in _handledObjects)) then
             {
-                if (!(_x in _array)) then
+                if (!(_x in ([] call _GetArrayFunction))) then
                 {
-                    [_x, _array, _AddMarkAction, _AddUnmarkAction, _AddAction] call _AddMarkAction;
+                    [_x, _GetArrayFunction, _AddMarkAction, _AddUnmarkAction, _AddAction] call _AddMarkAction;
                 }
                 else
                 {
-                    [_x, _array, _AddUnmarkAction, _AddMarkAction, _AddAction] call _AddUnmarkAction;
+                    [_x, _GetArrayFunction, _AddUnmarkAction, _AddMarkAction, _AddAction] call _AddUnmarkAction;
                 };
 
                 _handledObjects pushBack _x;
