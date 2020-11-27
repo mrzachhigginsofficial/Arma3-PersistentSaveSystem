@@ -9,8 +9,8 @@ PSave_SaveGamePrefix = "PSave_TestMission";
 // ARRAYS WITH CUSTOM OBJECTS TO BE SAVED
 // ------------------------------------------------------------------------------------
 PSave_CustomContainersToSave = [];
-PSave_CustomVariablesToSave = [];
 PSave_CustomUnitsToSave = [];
+PSave_CustomVariablesToSave = [];
 PSave_CustomVehiclesToSave = [];
 
 // ------------------------------------------------------------------------------------

@@ -4,6 +4,7 @@
 
 - Added possibility to store and restore missionNamespace variables.
 - Fixed storing and restoring groups of units.
+- Fixed problem with vanilla save / load in which vehicles array reference was lost in FindObjectsToAddActions.
 
 ## v0.2.0 (pre-release)
 
