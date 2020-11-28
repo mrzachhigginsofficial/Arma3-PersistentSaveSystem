@@ -32,6 +32,8 @@ private _vehicles = [];
     _vehicleArray pushBack ["cargo", [_vehicle] call skhpersist_fnc_GenerateCargoArray];
     _vehicleArray pushBack ["posRotation", [_vehicle] call skhpersist_fnc_GeneratePositionAndRotationArray];
     _vehicleArray pushBack ["turrets", [_vehicle] call _GenerateTurretArray];
+    _vehicleArray pushBack ["materials", getObjectMaterials _vehicle];
+    _vehicleArray pushBack ["textures", getObjectTextures _vehicle];
 
     _vehicles pushBack _vehicleArray;
 

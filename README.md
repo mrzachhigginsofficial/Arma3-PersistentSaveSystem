@@ -2,13 +2,13 @@
 
 ## Goal
 
-The goal is to create a reliable and modifiable custom persistent save / load system.
+The goal is to create a reliable and modifiable persistent save / load system, which can work both standalone and alongside vanilla save system.
 
 ## But why?
 
-Because vanilla save system is really good, when it's used for saving missions, which you'll complete in at most a couple of hours.
+Vanilla save system is great when it's used for saving missions, which you'll complete in at most a couple of hours.
 
-The problem is that long scenarios, such as Ravage or Antistasi, may be played indefinitely. Vanilla save system is not prepared to handle such situations and there are many issues, when a player uses original save functionality to keep his progress. Some examples:
+The problem is that long scenarios, such as Ravage or Antistasi, may be played indefinitely. Vanilla save system is not prepared to handle such situations and there are many issues, when a player uses original saving functionality to keep his progress. Some examples:
 
 - **ArmA 3 updates make the save incompatible** (this can be easily fixed when a minor version is changed by decompiling > updating version > recompiling a save file, but with a major version update I wasn't able to do this workaround, the game always crashed while loading).
 - After time, **there's a lot of garbage in a save file**. You accidentally touched a building with your vehicle? Don't worry, ArmA's save system got you covered! All 0.00001 damages will be kept in the save file.
@@ -33,8 +33,6 @@ Remember, that this file contains **all** stored variables, also by other missio
 ## Can I help?
 
 Sure! If you can help with development or testing and reporting bugs, let me know on Discord.
-
-
 
 ## Can I use this in my own scenario?
 

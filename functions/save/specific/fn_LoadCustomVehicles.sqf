@@ -33,6 +33,24 @@ private _ApplyTurrets =
     } forEach _turretArray;
 };
 
+private _ApplyMaterials =
+{ 
+    params ["_vehicle", "_materialsArray"];
+
+    {
+        _vehicle setObjectMaterial [_forEachIndex, _x];
+    } forEach _materialsArray;
+};
+
+private _ApplyTextures =
+{ 
+    params ["_vehicle", "_texturesArray"];
+
+    {
+        _vehicle setObjectTexture [_forEachIndex, _x];
+    } forEach _texturesArray;
+};
+
 [format ["Loading custom vehicles from save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
 
 private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
@@ -49,6 +67,8 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
     private _cargo = [_x, "cargo"] call skhpersist_fnc_GetByKey;
     private _posRotation = [_x, "posRotation"] call skhpersist_fnc_GetByKey;
     private _turretArray = [_x, "turrets"] call skhpersist_fnc_GetByKey;
+    private _materialsArray = [_x, "materials"] call skhpersist_fnc_GetByKey;
+    private _texturesArray = [_x, "textures"] call skhpersist_fnc_GetByKey;
     
     private _vehicle = _class createVehicle [0, 0, 0];
     [_vehicle, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
@@ -56,6 +76,8 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
     [_vehicle, _damages] call skhpersist_fnc_ApplyDamages;
     [_vehicle, _cargo] call skhpersist_fnc_ApplyCargo;
     [_vehicle, _turretArray] call _ApplyTurrets;
+    [_vehicle, _materialsArray] call _ApplyMaterials;
+    [_vehicle, _texturesArray] call _ApplyTextures;
     
     [_vehicle, PSave_CustomVehiclesToSave] call skhpersist_fnc_MarkForSave;
 } forEach _vehicles;

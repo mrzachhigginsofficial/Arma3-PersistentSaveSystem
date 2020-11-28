@@ -1,10 +1,13 @@
 # Changelog
 
+## v0.4.0 (pre-release)
+- Added storing and restoring vehicle's materials and textures.
+
 ## v0.3.0 (pre-release)
 
 - Added possibility to store and restore missionNamespace variables.
 - Fixed storing and restoring groups of units.
-- Fixed problem with vanilla save / load in which vehicles array reference was lost in FindObjectsToAddActions.
+- Fixed problem with vanilla save / load in which vehicles array reference lost in FindObjectsToAddActions.
 
 ## v0.2.0 (pre-release)
 
