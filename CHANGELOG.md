@@ -1,6 +1,11 @@
 # Changelog
 
+## v0.5.0 (pre-release)
+
+- Added storing and restoring general damage of vehicles and units.
+
 ## v0.4.0 (pre-release)
+
 - Added storing and restoring vehicle's materials and textures.
 - Added storing and restoring some of the orders given to units and groups.
 - It is now possible to do persistent save with units inside a vehicle - units roles in the vehicle will be saved and restored.
