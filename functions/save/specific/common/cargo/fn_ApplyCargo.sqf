@@ -29,9 +29,9 @@ private _AddAllToCargo =
     
     {
         private _name = _x;
-        private _count = (_cargoArray select 1) select _forEachIndex;
+        private _count = (_cargoArray # 1) # _forEachIndex;
         [_container, _name, _count] call _AddToCargo;
-    } forEach (_cargoArray select 0);
+    } forEach (_cargoArray # 0);
 };
 
 private _AddAllMagazinesToCargo =
@@ -39,8 +39,8 @@ private _AddAllMagazinesToCargo =
     params ["_container", "_cargoArray"];
 
     {
-        private _name = _x select 0;
-        private _ammo = _x select 1;
+        private _name = _x # 0;
+        private _ammo = _x # 1;
 
         _container addMagazineAmmoCargo [_name, 1, _ammo];
     } forEach _cargoArray;
@@ -67,8 +67,8 @@ private _AddAllContainersToCargo =
         // when adding items.
         
         {
-            private _currentClass = _x select 0;
-            private _currentInstance = _x select 1;
+            private _currentClass = _x # 0;
+            private _currentInstance = _x # 1;
 
             if (_currentClass == _class && [_currentInstance] call _IsContainerEmpty) exitWith
             {

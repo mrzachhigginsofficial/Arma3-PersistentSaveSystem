@@ -8,7 +8,7 @@ params ["_array", "_key"];
 private "_value";
 
 {
-    if (_key == (_x select 0)) exitWith { _value = _x select 1 };
+    if (_key == (_x # 0)) exitWith { _value = _x # 1 };
 } forEach _array;
 
 _value;

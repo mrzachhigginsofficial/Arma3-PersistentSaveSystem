@@ -13,8 +13,8 @@ private _GetContainersArray =
     private _containersArray = [];
 
     {
-        private _class = _x select 0;
-        private _instance = _x select 1;
+        private _class = _x # 0;
+        private _instance = _x # 1;
         private _cargo = [_instance] call skhpersist_fnc_GenerateCargoArray;
 
         private _currentContainerArray = [];

@@ -198,13 +198,13 @@ if (!(isNil { _leader })) then
         
         if (count _nameArray == 1) then
         {
-            _surname = _nameArray select 0;
+            _surname = _nameArray # 0;
             _joinedNames = _surname;
         }
         else
         {
-            _firstName = _nameArray select 0;
-            _surname = _nameArray select 1;
+            _firstName = _nameArray # 0;
+            _surname = _nameArray # 1;
             _joinedNames = format ["%1 %2", _firstName, _surname];
         };
         

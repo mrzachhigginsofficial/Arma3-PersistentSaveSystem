@@ -9,8 +9,8 @@ params ["_variable", "_namespace"];
 private _variableExists = false;
 
 {
-	private _currentKey = _x select 1;
-	private _currentNamespace = _x select 0;
+	private _currentKey = _x # 1;
+	private _currentNamespace = _x # 0;
 
 	if (_variable == _key && _namespace == _currentNamespace) exitWith { _variableExists = true };
 } forEach PSave_CustomVariablesToSave;

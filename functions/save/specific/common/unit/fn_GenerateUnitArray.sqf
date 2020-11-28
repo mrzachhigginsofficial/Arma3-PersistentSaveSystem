@@ -45,7 +45,7 @@ private _GenerateVehicleArray =
         private _vehicleRoleArray = [];
 
         {
-            private _unitInVehicle = _x select 0;
+            private _unitInVehicle = _x # 0;
 
             if (_unit == _unitInVehicle) exitWith
             {

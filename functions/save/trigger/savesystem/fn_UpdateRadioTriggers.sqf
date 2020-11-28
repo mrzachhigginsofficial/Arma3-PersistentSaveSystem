@@ -35,9 +35,9 @@ private _CreateLoadTriggers =
 	{
 		private _splittedVariable = _x splitString ".";
 
-		if ((_splittedVariable select 2) == "metadata") then
+		if ((_splittedVariable # 2) == "metadata") then
 		{
-			private _slot = parseNumber (_splittedVariable select 1);
+			private _slot = parseNumber (_splittedVariable # 1);
 			private _metadataArray = ["metadata", _slot] call skhpersist_fnc_LoadData;
 			private _systemTime = [_metadataArray, "systemTime"] call skhpersist_fnc_GetByKey;
 
@@ -47,7 +47,7 @@ private _CreateLoadTriggers =
 			}
 			else
 			{
-				private _comparisonResult = [_systemTime, _newestSlotData select 1] call skhpersist_fnc_CompareDates;
+				private _comparisonResult = [_systemTime, _newestSlotData # 1] call skhpersist_fnc_CompareDates;
 				if (_comparisonResult == 1) then
 				{
 					_newestSlotData = [_slot, _systemTime];
@@ -55,13 +55,13 @@ private _CreateLoadTriggers =
 			};
 
 			private _systemTimeStr = format ["%1.%2.%3 %4:%5:%6,%7",
-										     [_systemTime select 2, 1] call _AddLeadingZeroToDateNumber,
-										     [_systemTime select 1, 1] call _AddLeadingZeroToDateNumber,
-										     [_systemTime select 0, 1] call _AddLeadingZeroToDateNumber,
-										     [_systemTime select 3, 1] call _AddLeadingZeroToDateNumber,
-										     [_systemTime select 4, 1] call _AddLeadingZeroToDateNumber,
-										     [_systemTime select 5, 1] call _AddLeadingZeroToDateNumber,
-										     [_systemTime select 6, 2] call _AddLeadingZeroToDateNumber
+										     [_systemTime # 2, 1] call _AddLeadingZeroToDateNumber,
+										     [_systemTime # 1, 1] call _AddLeadingZeroToDateNumber,
+										     [_systemTime # 0, 1] call _AddLeadingZeroToDateNumber,
+										     [_systemTime # 3, 1] call _AddLeadingZeroToDateNumber,
+										     [_systemTime # 4, 1] call _AddLeadingZeroToDateNumber,
+										     [_systemTime # 5, 1] call _AddLeadingZeroToDateNumber,
+										     [_systemTime # 6, 2] call _AddLeadingZeroToDateNumber
 											 ];
 											
 			private _radio = "";
@@ -92,7 +92,7 @@ private _CreateLoadTriggers =
 	}
 	else
 	{
-		TriggerSaveSystem_NextSaveSlot = (_newestSlotData select 0) + 1;
+		TriggerSaveSystem_NextSaveSlot = (_newestSlotData # 0) + 1;
 
 		if (TriggerSaveSystem_NextSaveSlot > TriggerSaveSystem_SaveSlots) then
 		{

@@ -14,9 +14,9 @@ private _allVariables = ["variables", _slot] call skhpersist_fnc_LoadData;
 } forEach PSave_CustomVariablesToSave;
 
 {
-	private _namespace = _x select 0;
-    private _key = _x select 1;
-	private _value = _x select 2;
+	private _namespace = _x # 0;
+    private _key = _x # 1;
+	private _value = _x # 2;
 
 	[_namespace, _key, _value] call skhpersist_fnc_SaveVariableToNamespace;
 

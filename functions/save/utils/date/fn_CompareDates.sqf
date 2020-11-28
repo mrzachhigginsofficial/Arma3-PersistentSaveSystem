@@ -36,7 +36,7 @@ private _result = 0;
 
 {
 	private _n1 = _x;
-	private _n2 = _date2 select _forEachIndex;
+	private _n2 = _date2 # _forEachIndex;
 	private _partialResult = [_n1, _n2] call _CompareDateNumbers;
 
 	if (_partialResult != 0) exitWith

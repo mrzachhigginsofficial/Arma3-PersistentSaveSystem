@@ -10,8 +10,8 @@ params ["_slot"];
 private _allVariables = [];
 
 {
-	private _namespace = _x select 0;
-	private _name = _x select 1;
+	private _namespace = _x # 0;
+	private _name = _x # 1;
 	private _value = [_namespace, _name] call skhpersist_fnc_LoadVariableFromNamespace;
 
     _allVariables pushBack [_namespace, _name, _value];

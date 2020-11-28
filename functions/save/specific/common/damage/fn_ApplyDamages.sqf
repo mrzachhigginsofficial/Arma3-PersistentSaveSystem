@@ -8,6 +8,6 @@ params ["_entity", "_hitpointsArray"];
 
 {
     private _key = _x;
-    private _value = (_hitpointsArray select 2) select _forEachIndex;
+    private _value = (_hitpointsArray # 2) # _forEachIndex;
     _entity setHitPointDamage [_key, _value];
-} forEach (_hitpointsArray select 0);
+} forEach (_hitpointsArray # 0);

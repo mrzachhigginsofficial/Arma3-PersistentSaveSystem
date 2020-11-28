@@ -12,15 +12,15 @@ private _AddAction =
 
     _object addAction [_text, 
     {
-        private _thisAction = _this select 2;
+        private _thisAction = _this # 2;
 
-        private _params = _this select 3;
-        private _object = _params select 0;
-        private _GetArrayFunction = _params select 1;
-        private _Function = _params select 2;
-        private _CurrentFunction = _params select 3;
-        private _MirrorFunction = _params select 4;
-        private _AddAction = _params select 5;
+        private _params = _this # 3;
+        private _object = _params # 0;
+        private _GetArrayFunction = _params # 1;
+        private _Function = _params # 2;
+        private _CurrentFunction = _params # 3;
+        private _MirrorFunction = _params # 4;
+        private _AddAction = _params # 5;
 
         [_object, _GetArrayFunction] call _Function;
         [_object, _GetArrayFunction, _MirrorFunction, _CurrentFunction, _AddAction] call _MirrorFunction;

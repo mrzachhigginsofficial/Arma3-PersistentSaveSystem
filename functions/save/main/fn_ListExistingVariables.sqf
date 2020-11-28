@@ -24,7 +24,7 @@ else
 {
     private _splittedVariable = _x splitString ".";
     
-    if (_splittedVariable select 0 == PSave_SaveGamePrefix) then
+    if (_splittedVariable # 0 == PSave_SaveGamePrefix) then
     {
         if (isNil { _slot }) then
         {
@@ -32,7 +32,7 @@ else
         }
         else
         {
-            if (count _splittedVariable >= 2 && (parseNumber (_splittedVariable select 1)) == _slot) then
+            if (count _splittedVariable >= 2 && (parseNumber (_splittedVariable # 1)) == _slot) then
             {
                 _result pushBack _x;
             };

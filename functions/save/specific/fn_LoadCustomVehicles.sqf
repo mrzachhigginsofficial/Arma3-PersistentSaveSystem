@@ -25,9 +25,9 @@ private _ApplyTurrets =
     [_vehicle] call _ClearTurretMagazines;
 
     {
-        private _class = _x select 0;
-        private _turretPath = _x select 1;
-        private _ammo = _x select 2;
+        private _class = _x # 0;
+        private _turretPath = _x # 1;
+        private _ammo = _x # 2;
 
         _vehicle addMagazineTurret [_class, _turretPath, _ammo];
     } forEach _turretArray;
