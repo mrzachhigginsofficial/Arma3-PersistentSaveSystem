@@ -50,6 +50,7 @@ private _AddUnmarkAction =
 };
 
 private _handledObjects = [];
+private _storedActions = [];
 
 [format ["Looking for objects of type %1 to add mark actions to.", _objectsType]] call skhpersist_fnc_LogToRPT;
 
@@ -57,22 +58,36 @@ while {alive player} do
 {
     sleep 1;
     private _objectsArray = player nearObjects [_objectsType, _radius];
+
+    if (PSave_RefreshActions) then
+    {
+        {
+            (_handledObjects # _forEachIndex) removeAction _x;
+        } forEach _storedActions;
+
+        _storedActions = [];
+        _handledObjects = [];
+        PSave_RefreshActions = false;
+    };
     
     if (!PSave_LoadInProgress) then
     {
         {
             if (!(_x in _handledObjects)) then
             {
+                private _action = objNull;
+
                 if (!(_x in ([] call _GetArrayFunction))) then
                 {
-                    [_x, _GetArrayFunction, _AddMarkAction, _AddUnmarkAction, _AddAction] call _AddMarkAction;
+                    _action = [_x, _GetArrayFunction, _AddMarkAction, _AddUnmarkAction, _AddAction] call _AddMarkAction;
                 }
                 else
                 {
-                    [_x, _GetArrayFunction, _AddUnmarkAction, _AddMarkAction, _AddAction] call _AddUnmarkAction;
+                    _action = [_x, _GetArrayFunction, _AddUnmarkAction, _AddMarkAction, _AddAction] call _AddUnmarkAction;
                 };
 
                 _handledObjects pushBack _x;
+                _storedActions pushBack _action;
             };
         } forEach _objectsArray;
 

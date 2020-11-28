@@ -34,6 +34,7 @@ private _vehicles = [];
     _vehicleArray pushBack ["turrets", [_vehicle] call _GenerateTurretArray];
     _vehicleArray pushBack ["materials", getObjectMaterials _vehicle];
     _vehicleArray pushBack ["textures", getObjectTextures _vehicle];
+    _vehicleArray pushBack ["id", _vehicle getVariable "PSave_ID"];
 
     _vehicles pushBack _vehicleArray;
 

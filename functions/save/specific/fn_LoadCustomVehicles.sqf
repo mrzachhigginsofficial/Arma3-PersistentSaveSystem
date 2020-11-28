@@ -69,6 +69,7 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
     private _turretArray = [_x, "turrets"] call skhpersist_fnc_GetByKey;
     private _materialsArray = [_x, "materials"] call skhpersist_fnc_GetByKey;
     private _texturesArray = [_x, "textures"] call skhpersist_fnc_GetByKey;
+    private _id = [_x, "id"] call skhpersist_fnc_GetByKey;
     
     private _vehicle = _class createVehicle [0, 0, 0];
     [_vehicle, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
@@ -78,6 +79,9 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
     [_vehicle, _turretArray] call _ApplyTurrets;
     [_vehicle, _materialsArray] call _ApplyMaterials;
     [_vehicle, _texturesArray] call _ApplyTextures;
+    _vehicle setVariable ["PSave_ID", PSave_NextVehicleId];
+    PSave_NextVehicleId = PSave_NextVehicleId + 1;
+    _vehicle setVariable ["PSave_UnitAssignmentID", _id];
     
     [_vehicle, PSave_CustomVehiclesToSave] call skhpersist_fnc_MarkForSave;
 } forEach _vehicles;

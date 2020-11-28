@@ -46,7 +46,9 @@ PSave_OnSaveEH pushBack "mods\ravage\fn_SaveRavageData.sqf";
 [1000, "Car", { PSave_CustomVehiclesToSave }] spawn skhpersist_fnc_FindObjectsToAddActions;
 
 // ------------------------------------------------------------------------------------
-// DON'T CHANGE THESE VARIABLES MANUALLY
+// DON'T CHANGE THESE VARIABLES VALUES MANUALLY IN THIS FILE!
 // ------------------------------------------------------------------------------------
 PSave_LoadInProgress = false;
 PSave_SaveInProgress = false;
+PSave_RefreshActions = false;
+PSave_NextVehicleId = 1; // used only when storing vehicles, which have saved units inside

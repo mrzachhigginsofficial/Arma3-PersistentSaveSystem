@@ -7,6 +7,11 @@ params ["_slot"];
 
 [format ["Saving custom units to save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
 
+private _SaveVehicleInfo =
+{
+
+};
+
 private _units = [];
 
 {

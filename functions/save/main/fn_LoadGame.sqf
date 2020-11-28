@@ -7,12 +7,14 @@ params ["_slot"];
 [format ["Loading data from slot %1", _slot]] call skhpersist_fnc_LogToRPT;
 
 PSave_LoadInProgress = true;
+PSave_NextVehicleId = 1;
 
+[_slot] call skhpersist_fnc_LoadCustomVehicles; // has to be called before loading units and player
+
+[_slot] call skhpersist_fnc_LoadCustomUnits;
 [_slot] call skhpersist_fnc_LoadPlayer;
 [_slot] call skhpersist_fnc_LoadCustomContainers;
-[_slot] call skhpersist_fnc_LoadCustomUnits;
 [_slot] call skhpersist_fnc_LoadCustomVariables;
-[_slot] call skhpersist_fnc_LoadCustomVehicles;
 [_slot] call skhpersist_fnc_LoadEnvironmentInfo;
 [_slot] call skhpersist_fnc_LoadMapMarkers;
 
