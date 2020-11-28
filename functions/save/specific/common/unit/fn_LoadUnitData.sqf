@@ -163,7 +163,6 @@ _unit setVariable ["BIS_enableRandomization", false];
 
 [_unit, _damages] call skhpersist_fnc_ApplyDamages;
 [_unit, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
-[_unit, _vehicle] call _AddUnitToAssignedVehicleIfNecessary;
 
 _unit setSkill _skill;
 _unit setUnitLoadout _loadout;
@@ -184,6 +183,8 @@ if (!(isNil { _leader })) then
 {
     doStop _unit;
 };
+
+[_unit, _vehicle] call _AddUnitToAssignedVehicleIfNecessary;
 
 [_unit, _unitData] spawn {
     params ["_unit", "_unitData"];
