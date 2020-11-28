@@ -29,7 +29,6 @@ private _GenerateGroupOrdersArray =
 
     _groupOrdersArray pushBack ["combatMode", combatMode _group];
     _groupOrdersArray pushBack ["formation", formation _group];
-    _groupOrdersArray pushBack ["formationDir", formationDirection _group];
     _groupOrdersArray pushBack ["speedMode", speedMode _group];
 
     _groupOrdersArray;
@@ -52,12 +51,13 @@ _unitArray pushBack ["pitch", pitch _unit];
 _unitArray pushBack ["rating", rating _unit];
 _unitArray pushBack ["stamina", getStamina _unit];
 _unitArray pushBack ["fatigue", getFatigue _unit];
+_unitArray pushBack ["formationDir", formationDirection _unit];
 _unitArray pushBack ["orders", [_unit] call _GenerateOrdersArray];
 
 if (_isLeader) then
 {
     _unitArray pushBack ["group", [_unit] call skhpersist_fnc_GenerateGroupArray];
-    _unitArray pushBack ["groupOrders", [_unit] call skhpersist_fnc_GenerateGroupOrdersArray];
+    _unitArray pushBack ["groupOrders", [_unit] call _GenerateGroupOrdersArray];
 };
 
 _unitArray;

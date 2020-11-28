@@ -87,15 +87,16 @@ private _LoadGroupOrders =
 
     private _group = group _unit;
 
-    private _combatMode = [_groupOrdersArray, "combatMode"] call skhpersist_fnc_GetByKey;
-    private _formation = [_groupOrdersArray, "formation"] call skhpersist_fnc_GetByKey;
-    private _formationDir = [_groupOrdersArray, "formationDir"] call skhpersist_fnc_GetByKey;
-    private _speedMode = [_groupOrdersArray, "speedMode"] call skhpersist_fnc_GetByKey;
+    if (leader _group == _unit) then 
+    {
+        private _combatMode = [_groupOrdersArray, "combatMode"] call skhpersist_fnc_GetByKey;
+        private _formation = [_groupOrdersArray, "formation"] call skhpersist_fnc_GetByKey;
+        private _speedMode = [_groupOrdersArray, "speedMode"] call skhpersist_fnc_GetByKey;
 
-    _group setCombatMode _combatMode;
-    _group setFormation _formation;
-    _group setFormDIr _formationDir;
-    _group setSpeedMode _speedMode;
+        _group setCombatMode _combatMode;
+        _group setFormation _formation;
+        _group setSpeedMode _speedMode;
+    };
 };
 
 [format ["Loading unit data for unit %1.", _unit]] call skhpersist_fnc_LogToRPT;
@@ -104,6 +105,7 @@ private _class = [_unitData, "class"] call skhpersist_fnc_GetByKey;
 private _side = [_unitData, "side"] call skhpersist_fnc_GetByKey;
 private _group = [_unitData, "group"] call skhpersist_fnc_GetByKey;
 private _orders = [_unitData, "orders"] call skhpersist_fnc_GetByKey;
+private _groupOrders = [_unitData, "groupOrders"] call skhpersist_fnc_GetByKey;
         
 _unit = [_unit, _class, _side] call _CreateUnitIfDoesntExist;
 _unit setVariable ["BIS_enableRandomization", false];
@@ -112,8 +114,12 @@ _unit setVariable ["BIS_enableRandomization", false];
 [_unit, _leader] call _JoinUnitToLeaderIfSpecified;
 [_unit, _group] call _LoadUnitsInGroup;
 [_unit, _orders] call _LoadOrders;
+[_unit, _groupOrders] call _LoadGroupOrders;
 
-doStop _unit;
+if (!(isNil { _leader })) then
+{
+    doStop _unit;
+};
 
 [_unit, _unitData, _RestoreUnitsName] spawn {
     params ["_unit", "_unitData", "_RestoreUnitsName"];
@@ -129,6 +135,7 @@ doStop _unit;
     private _rating = [_unitData, "rating"] call skhpersist_fnc_GetByKey;
     private _stamina = [_unitData, "stamina"] call skhpersist_fnc_GetByKey;
     private _fatigue = [_unitData, "fatigue"] call skhpersist_fnc_GetByKey;
+    private _formationDir = [_unitData, "formationDir"] call skhpersist_fnc_GetByKey;
     
     [_unit, _name] call _RestoreUnitsName;
 
@@ -142,6 +149,7 @@ doStop _unit;
     _unit setPitch _pitch;
     _unit setStamina _stamina;
     _unit setFatigue _fatigue;
+    _unit setFormDir _formationDir;
 
     if (rating _unit > _rating) then
     {
