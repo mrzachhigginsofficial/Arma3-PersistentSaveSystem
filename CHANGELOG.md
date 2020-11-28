@@ -2,6 +2,7 @@
 
 ## v0.4.0 (pre-release)
 - Added storing and restoring vehicle's materials and textures.
+- Added storing and restoring some of the orders given to units and groups.
 
 ## v0.3.0 (pre-release)
 

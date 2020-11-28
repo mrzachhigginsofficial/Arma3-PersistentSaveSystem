@@ -70,11 +70,40 @@ private _RestoreUnitsName =
     _unit setName [_joinedNames, _firstName, _surname];
 };
 
+private _LoadOrders =
+{
+    params ["_unit", "_ordersArray"];
+
+    private _behaviour = [_ordersArray, "behaviour"] call skhpersist_fnc_GetByKey;
+    private _unitPos = [_ordersArray, "unitPos"] call skhpersist_fnc_GetByKey;
+
+    _unit setBehaviour _behaviour;
+    _unit setUnitPos _unitPos;
+};
+
+private _LoadGroupOrders =
+{
+    params ["_unit", "_groupOrdersArray"];
+
+    private _group = group _unit;
+
+    private _combatMode = [_groupOrdersArray, "combatMode"] call skhpersist_fnc_GetByKey;
+    private _formation = [_groupOrdersArray, "formation"] call skhpersist_fnc_GetByKey;
+    private _formationDir = [_groupOrdersArray, "formationDir"] call skhpersist_fnc_GetByKey;
+    private _speedMode = [_groupOrdersArray, "speedMode"] call skhpersist_fnc_GetByKey;
+
+    _group setCombatMode _combatMode;
+    _group setFormation _formation;
+    _group setFormDIr _formationDir;
+    _group setSpeedMode _speedMode;
+};
+
 [format ["Loading unit data for unit %1.", _unit]] call skhpersist_fnc_LogToRPT;
 
 private _class = [_unitData, "class"] call skhpersist_fnc_GetByKey;
 private _side = [_unitData, "side"] call skhpersist_fnc_GetByKey;
 private _group = [_unitData, "group"] call skhpersist_fnc_GetByKey;
+private _orders = [_unitData, "orders"] call skhpersist_fnc_GetByKey;
         
 _unit = [_unit, _class, _side] call _CreateUnitIfDoesntExist;
 _unit setVariable ["BIS_enableRandomization", false];
@@ -82,6 +111,9 @@ _unit setVariable ["BIS_enableRandomization", false];
 [_unit] call _RemoveOtherUnitsFromGroup;
 [_unit, _leader] call _JoinUnitToLeaderIfSpecified;
 [_unit, _group] call _LoadUnitsInGroup;
+[_unit, _orders] call _LoadOrders;
+
+doStop _unit;
 
 [_unit, _unitData, _RestoreUnitsName] spawn {
     params ["_unit", "_unitData", "_RestoreUnitsName"];
