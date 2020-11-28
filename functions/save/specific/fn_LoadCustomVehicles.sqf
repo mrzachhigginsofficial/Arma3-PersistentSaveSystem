@@ -63,6 +63,7 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
 {
     private _class = [_x, "class"] call skhpersist_fnc_GetByKey;
     private _fuel = [_x, "fuel"] call skhpersist_fnc_GetByKey;
+    private _generalDamage = [_x, "generalDamage"] call skhpersist_fnc_GetByKey;
     private _damages = [_x, "damages"] call skhpersist_fnc_GetByKey;
     private _cargo = [_x, "cargo"] call skhpersist_fnc_GetByKey;
     private _posRotation = [_x, "posRotation"] call skhpersist_fnc_GetByKey;
@@ -75,6 +76,7 @@ private _vehicles = ["vehicles", _slot] call skhpersist_fnc_LoadData;
     [_vehicle, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
     _vehicle setFuel _fuel;
     [_vehicle, _damages] call skhpersist_fnc_ApplyDamages;
+    _vehicle setDamage _generalDamage;
     [_vehicle, _cargo] call skhpersist_fnc_ApplyCargo;
     [_vehicle, _turretArray] call _ApplyTurrets;
     [_vehicle, _materialsArray] call _ApplyMaterials;

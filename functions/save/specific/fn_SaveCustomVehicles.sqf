@@ -28,6 +28,7 @@ private _vehicles = [];
     
     _vehicleArray pushBack ["class", typeOf _vehicle];
     _vehicleArray pushBack ["fuel", fuel _vehicle];
+    _vehicleArray pushBack ["generalDamage", damage _vehicle];
     _vehicleArray pushBack ["damages", getAllHitPointsDamage _vehicle];
     _vehicleArray pushBack ["cargo", [_vehicle] call skhpersist_fnc_GenerateCargoArray];
     _vehicleArray pushBack ["posRotation", [_vehicle] call skhpersist_fnc_GeneratePositionAndRotationArray];

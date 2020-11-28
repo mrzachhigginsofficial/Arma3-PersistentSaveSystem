@@ -71,6 +71,7 @@ private _GenerateVehicleArray =
 private _unitArray = [];
 
 _unitArray pushBack ["class", typeOf _unit];
+_unitArray pushBack ["generalDamage", damage _unit];
 _unitArray pushBack ["damages", getAllHitPointsDamage _unit];
 _unitArray pushBack ["posRotation", [_unit] call skhpersist_fnc_GeneratePositionAndRotationArray];
 _unitArray pushBack ["loadout", getUnitLoadout _unit];

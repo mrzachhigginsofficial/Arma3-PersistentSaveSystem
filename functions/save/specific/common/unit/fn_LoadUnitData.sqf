@@ -139,6 +139,7 @@ private _group = [_unitData, "group"] call skhpersist_fnc_GetByKey;
 private _orders = [_unitData, "orders"] call skhpersist_fnc_GetByKey;
 private _groupOrders = [_unitData, "groupOrders"] call skhpersist_fnc_GetByKey;
 private _loadout = [_unitData, "loadout"] call skhpersist_fnc_GetByKey;
+private _generalDamage = [_unitData, "generalDamage"] call skhpersist_fnc_GetByKey;
 private _damages = [_unitData, "damages"] call skhpersist_fnc_GetByKey;
 private _posRotation = [_unitData, "posRotation"] call skhpersist_fnc_GetByKey;
 private _skill = [_unitData, "skill"] call skhpersist_fnc_GetByKey;
@@ -169,6 +170,7 @@ _unit setUnitLoadout _loadout;
 _unit setFatigue _fatigue;
 _unit setFormDir _formationDir;
 _unit setStamina _stamina;
+_unit setDamage _generalDamage;
 
 if (rating _unit > _rating) then
 {
