@@ -3,6 +3,7 @@
 ## v0.5.0 (pre-release)
 
 - Added storing and restoring general damage of vehicles and units.
+- Added storing and restoring unit's variables (Ravage-specific loading is no longer required and has been removed).
 
 ## v0.4.0 (pre-release)
 

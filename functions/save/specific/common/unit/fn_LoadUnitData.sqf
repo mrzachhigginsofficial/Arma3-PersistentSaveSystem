@@ -131,6 +131,22 @@ private _AddUnitToAssignedVehicleIfNecessary =
     };
 };
 
+private _LoadVariables =
+{
+    params ["_unit", "_variablesArray"];
+
+    {
+        _unit setVariable [_x, nil];
+    } forEach (allVariables _unit);
+
+    {
+        private _key = _x # 0;
+        private _value = _x # 1;
+
+        _unit setVariable [_key, _value];
+    } forEach _variablesArray;
+};
+
 [format ["Loading unit data for unit %1.", _unit]] call skhpersist_fnc_LogToRPT;
 
 private _class = [_unitData, "class"] call skhpersist_fnc_GetByKey;
@@ -151,6 +167,7 @@ private _rating = [_unitData, "rating"] call skhpersist_fnc_GetByKey;
 private _stamina = [_unitData, "stamina"] call skhpersist_fnc_GetByKey;
 private _fatigue = [_unitData, "fatigue"] call skhpersist_fnc_GetByKey;
 private _formationDir = [_unitData, "formationDir"] call skhpersist_fnc_GetByKey;
+private _variables = [_unitData, "variables"] call skhpersist_fnc_GetByKey;
 private _vehicle = [_unitData, "vehicle"] call skhpersist_fnc_GetByKey;
         
 _unit = [_unit, _class, _side] call _CreateUnitIfDoesntExist;
@@ -161,6 +178,7 @@ _unit setVariable ["BIS_enableRandomization", false];
 [_unit, _group] call _LoadUnitsInGroup;
 [_unit, _orders] call _LoadOrders;
 [_unit, _groupOrders] call _LoadGroupOrders;
+[_unit, _variables] call _LoadVariables;
 
 _unit setDamage _generalDamage;
 [_unit, _damages] call skhpersist_fnc_ApplyDamages;

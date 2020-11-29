@@ -66,6 +66,19 @@ private _GenerateVehicleArray =
     _vehicleArray;
 };
 
+private _GenerateVariablesArray =
+{
+    params ["_unit"];
+
+    private _variablesArray = [];
+
+    {
+        _variablesArray pushBack [_x, _unit getVariable _x];
+    } forEach (allVariables _unit);
+
+    _variablesArray;
+};
+
 [format ["Generating unit array for unit %1 (leader: %2).", _unit, _isLeader]] call skhpersist_fnc_LogToRPT;
 
 private _unitArray = [];
@@ -85,6 +98,7 @@ _unitArray pushBack ["rating", rating _unit];
 _unitArray pushBack ["stamina", getStamina _unit];
 _unitArray pushBack ["fatigue", getFatigue _unit];
 _unitArray pushBack ["formationDir", formationDirection _unit];
+_unitArray pushBack ["variables", [_unit] call _GenerateVariablesArray];
 _unitArray pushBack ["orders", [_unit] call _GenerateOrdersArray];
 
 if (vehicle _unit != _unit) then
