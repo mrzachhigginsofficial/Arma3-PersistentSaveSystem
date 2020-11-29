@@ -162,6 +162,7 @@ _unit setVariable ["BIS_enableRandomization", false];
 [_unit, _orders] call _LoadOrders;
 [_unit, _groupOrders] call _LoadGroupOrders;
 
+_unit setDamage _generalDamage;
 [_unit, _damages] call skhpersist_fnc_ApplyDamages;
 [_unit, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
 
@@ -170,7 +171,6 @@ _unit setUnitLoadout _loadout;
 _unit setFatigue _fatigue;
 _unit setFormDir _formationDir;
 _unit setStamina _stamina;
-_unit setDamage _generalDamage;
 
 if (rating _unit > _rating) then
 {
