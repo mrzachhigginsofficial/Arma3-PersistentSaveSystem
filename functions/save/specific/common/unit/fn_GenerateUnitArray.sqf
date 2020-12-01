@@ -61,8 +61,6 @@ private _GenerateVehicleArray =
     _vehicleArray pushBack ["id", [vehicle _unit] call skhpersist_fnc_AddCustomVehicleToSave];
     _vehicleArray pushBack ["role", [_unit, vehicle _unit] call _GenerateVehicleRoleArray];
 
-    PSave_RefreshActions = true;
-
     _vehicleArray;
 };
 

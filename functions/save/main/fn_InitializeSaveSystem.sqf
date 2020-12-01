@@ -37,12 +37,11 @@ PSave_OnSaveEH = [];
 // ------------------------------------------------------------------------------------
 // Looks for cars near the player in a loop.
 // Each car will get an action, which will allow to mark it for save.
-[1000, "Car", { PSave_CustomVehiclesToSave }] spawn skhpersist_fnc_FindObjectsToAddActions;
+[1000, "Car", "PSave_CustomVehiclesToSave", { PSave_CustomVehiclesToSave }] spawn skhpersist_fnc_FindObjectsToAddActions;
 
 // ------------------------------------------------------------------------------------
 // DON'T CHANGE THESE VARIABLES VALUES MANUALLY IN THIS FILE!
 // ------------------------------------------------------------------------------------
 PSave_LoadInProgress = false;
 PSave_SaveInProgress = false;
-PSave_RefreshActions = false;
 PSave_NextVehicleId = 1; // used only when storing vehicles, which have saved units inside
