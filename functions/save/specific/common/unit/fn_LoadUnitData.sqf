@@ -147,6 +147,15 @@ private _LoadVariables =
     } forEach _variablesArray;
 };
 
+private _LoadSkills =
+{
+    params ["_unit", "_skillsArray"];
+
+    {
+        _unit setSkill [_x # 0, _x # 1];
+    } forEach _skillsArray;
+};
+
 [format ["Loading unit data for unit %1.", _unit]] call skhpersist_fnc_LogToRPT;
 
 private _class = [_unitData, "class"] call skhpersist_fnc_GetByKey;
@@ -158,7 +167,7 @@ private _loadout = [_unitData, "loadout"] call skhpersist_fnc_GetByKey;
 private _generalDamage = [_unitData, "generalDamage"] call skhpersist_fnc_GetByKey;
 private _damages = [_unitData, "damages"] call skhpersist_fnc_GetByKey;
 private _posRotation = [_unitData, "posRotation"] call skhpersist_fnc_GetByKey;
-private _skill = [_unitData, "skill"] call skhpersist_fnc_GetByKey;
+private _skills = [_unitData, "skills"] call skhpersist_fnc_GetByKey;
 private _name = [_unitData, "name"] call skhpersist_fnc_GetByKey;
 private _face = [_unitData, "face"] call skhpersist_fnc_GetByKey;
 private _speaker = [_unitData, "speaker"] call skhpersist_fnc_GetByKey;
@@ -179,12 +188,12 @@ _unit setVariable ["BIS_enableRandomization", false];
 [_unit, _orders] call _LoadOrders;
 [_unit, _groupOrders] call _LoadGroupOrders;
 [_unit, _variables] call _LoadVariables;
+[_unit, _skills] call _LoadSkills;
 
 _unit setDamage _generalDamage;
 [_unit, _damages] call skhpersist_fnc_ApplyDamages;
 [_unit, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
 
-_unit setSkill _skill;
 _unit setUnitLoadout _loadout;
 _unit setFatigue _fatigue;
 _unit setFormDir _formationDir;

@@ -5,6 +5,7 @@
 - Added storing and restoring general damage of vehicles and units.
 - Added storing and restoring unit's variables (Ravage-specific loading is no longer required and has been removed).
 - Simplified the code for marking / unmarking actions.
+- Added storing and restoring subskills instead of the general skill value.
 
 ## v0.4.0 (pre-release)
 

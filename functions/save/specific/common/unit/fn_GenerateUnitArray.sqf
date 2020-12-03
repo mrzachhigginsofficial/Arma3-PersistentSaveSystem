@@ -77,6 +77,29 @@ private _GenerateVariablesArray =
     _variablesArray;
 };
 
+private _GenerateSkillsArray =
+{
+    params ["_unit"];
+
+    private _skillsArray = [];
+
+    {
+        _skillsArray pushBack [_x, _unit skill _x];
+    } forEach [
+        "aimingAccuracy",
+        "aimingShake",
+        "aimingSpeed",
+        "commanding",
+        "courage",
+        "general",
+        "reloadSpeed",
+        "spotDistance",
+        "spotTime"
+    ];
+
+    _skillsArray;
+};
+
 [format ["Generating unit array for unit %1 (leader: %2).", _unit, _isLeader]] call skhpersist_fnc_LogToRPT;
 
 private _unitArray = [];
@@ -87,7 +110,7 @@ _unitArray pushBack ["damages", getAllHitPointsDamage _unit];
 _unitArray pushBack ["posRotation", [_unit] call skhpersist_fnc_GeneratePositionAndRotationArray];
 _unitArray pushBack ["loadout", getUnitLoadout _unit];
 _unitArray pushBack ["side", side _unit];
-_unitArray pushBack ["skill", skill _unit];
+_unitArray pushBack ["skills", [_unit] call _GenerateSkillsArray];
 _unitArray pushBack ["name", (name _unit) splitString " "];
 _unitArray pushBack ["face", face _unit];
 _unitArray pushBack ["speaker", speaker _unit];
