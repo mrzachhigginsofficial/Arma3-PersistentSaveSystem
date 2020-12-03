@@ -163,7 +163,6 @@ private _side = [_unitData, "side"] call skhpersist_fnc_GetByKey;
 private _group = [_unitData, "group"] call skhpersist_fnc_GetByKey;
 private _orders = [_unitData, "orders"] call skhpersist_fnc_GetByKey;
 private _groupOrders = [_unitData, "groupOrders"] call skhpersist_fnc_GetByKey;
-private _loadout = [_unitData, "loadout"] call skhpersist_fnc_GetByKey;
 private _generalDamage = [_unitData, "generalDamage"] call skhpersist_fnc_GetByKey;
 private _damages = [_unitData, "damages"] call skhpersist_fnc_GetByKey;
 private _posRotation = [_unitData, "posRotation"] call skhpersist_fnc_GetByKey;
@@ -194,7 +193,6 @@ _unit setDamage _generalDamage;
 [_unit, _damages] call skhpersist_fnc_ApplyDamages;
 [_unit, _posRotation] call skhpersist_fnc_ApplyPositionAndRotation;
 
-_unit setUnitLoadout _loadout;
 _unit setFatigue _fatigue;
 _unit setFormDir _formationDir;
 _unit setStamina _stamina;
@@ -245,12 +243,14 @@ if (!(isNil { _leader })) then
     private _face = [_unitData, "face"] call skhpersist_fnc_GetByKey;
     private _speaker = [_unitData, "speaker"] call skhpersist_fnc_GetByKey;
     private _pitch = [_unitData, "pitch"] call skhpersist_fnc_GetByKey;
+    private _loadout = [_unitData, "loadout"] call skhpersist_fnc_GetByKey;
     
     [_unit, _name] call _RestoreUnitsName;
     
     _unit setFace _face;
     _unit setSpeaker _speaker;
     _unit setPitch _pitch;
+    _unit setUnitLoadout _loadout; // goggles weren't restored correctly when outside spawn
 };
 
 _unit;
