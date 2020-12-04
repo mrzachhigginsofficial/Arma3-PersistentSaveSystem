@@ -7,6 +7,7 @@
 - Simplified the code for marking / unmarking actions.
 - Added storing and restoring subskills instead of the general skill value.
 - Fixed goggles not restoring.
+- Fixed markers defined by user being overwritten after mission restart.
 
 ## v0.4.0 (pre-release)
 

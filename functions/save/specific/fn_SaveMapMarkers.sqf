@@ -8,11 +8,20 @@ params ["_slot"];
 [format ["Saving map markers to save slot %1.", _slot]] call skhpersist_fnc_LogToRPT;
 
 private _markersArray = [];
+private _userMarkersCounter = 1;
 
 {
     private _marker = [];
     
-    _marker pushBack ["name", _x];
+    private _name = _x;
+
+    if ((_name splitString ' ') # 0 == "_USER_DEFINED") then
+    {
+        _name = format ["_USER_DEFINED %1_STORED", _userMarkersCounter];
+        _userMarkersCounter = _userMarkersCounter + 1;
+    };
+
+    _marker pushBack ["name", _name];
     
     _marker pushBack ["alpha", markerAlpha _x];
     _marker pushBack ["brush", markerBrush _x];
