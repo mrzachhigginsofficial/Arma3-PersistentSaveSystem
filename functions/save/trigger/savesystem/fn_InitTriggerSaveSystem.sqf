@@ -16,6 +16,6 @@ TriggerSaveSystem_SlotTriggers = [nil, nil, nil, nil, nil, nil, nil, nil, nil];
 // Save game trigger.
 TriggerSaveSystem_SaveTrigger = [] call skhpersist_fnc_CreateSaveTrigger;
 
-PSave_OnSaveEH pushBack { params ["_slot"]; [_slot] call skhpersist_fnc_UpdateRadioTriggers; };
+PSave_AfterSaveEH pushBack { params ["_slot"]; [_slot] call skhpersist_fnc_UpdateRadioTriggers; };
 
 [] call skhpersist_fnc_UpdateRadioTriggers;

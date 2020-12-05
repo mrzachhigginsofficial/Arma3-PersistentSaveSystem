@@ -6,6 +6,10 @@ params ["_slot"];
 
 PSave_SaveInProgress = true;
 
+{
+	[_x, [_slot]] call skhpersist_fnc_CallFunctionFromFileOrCode;
+} forEach PSave_BeforeSaveEH;
+
 [format ["Saving data on slot %1", _slot]] call skhpersist_fnc_LogToRPT;
 
 [_slot] call skhpersist_fnc_ClearSave;
@@ -21,7 +25,7 @@ PSave_SaveInProgress = true;
 
 {
 	[_x, [_slot]] call skhpersist_fnc_CallFunctionFromFileOrCode;
-} forEach PSave_OnSaveEH;
+} forEach PSave_AfterSaveEH;
 
 saveProfileNamespace;
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.6.0 (pre-release)
+
+- Added before & after event handlers for save / load.
+
 ## v0.5.0 (pre-release)
 
 - Added storing and restoring general damage of vehicles and units.

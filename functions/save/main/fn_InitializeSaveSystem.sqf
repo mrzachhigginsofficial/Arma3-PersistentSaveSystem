@@ -17,14 +17,21 @@ PSave_CustomVehiclesToSave = [];
 // EVENT HANDLERS (provide paths to .sqf files or the code directly)
 // ------------------------------------------------------------------------------------
 
+// Functions to call before load.
+// Params: _slot (save slot)
+PSave_BeforeLoadEH = [];
+
+// Functions to call before save.
+// Params: _slot (save slot)
+PSave_BeforeSaveEH = [];
+
 // Functions to call after load.
 // Params: _slot (save slot)
-PSave_OnLoadEH = [];
+PSave_AfterLoadEH = [];
 
 // Functions to call after save.
 // Params: _slot (save slot)
-PSave_OnSaveEH = [];
-
+PSave_AfterSaveEH = [];
 // ------------------------------------------------------------------------------------
 // SAVE SYSTEMS
 // ------------------------------------------------------------------------------------
