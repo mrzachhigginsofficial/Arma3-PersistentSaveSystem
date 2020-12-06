@@ -177,6 +177,7 @@ private _fatigue = [_unitData, "fatigue"] call skhpersist_fnc_GetByKey;
 private _formationDir = [_unitData, "formationDir"] call skhpersist_fnc_GetByKey;
 private _variables = [_unitData, "variables"] call skhpersist_fnc_GetByKey;
 private _vehicle = [_unitData, "vehicle"] call skhpersist_fnc_GetByKey;
+private _assignedTeam = [_unitData, "assignedTeam"] call skhpersist_fnc_GetByKey;
         
 _unit = [_unit, _class, _side] call _CreateUnitIfDoesntExist;
 _unit setVariable ["BIS_enableRandomization", false];
@@ -196,6 +197,7 @@ _unit setDamage _generalDamage;
 _unit setFatigue _fatigue;
 _unit setFormDir _formationDir;
 _unit setStamina _stamina;
+_unit assignTeam _assignedTeam;
 
 if (rating _unit > _rating) then
 {

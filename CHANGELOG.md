@@ -4,6 +4,7 @@
 
 - Added before & after event handlers for save / load.
 - Removed storing CBA variables from unit.
+- Added storing and restoring assigned team color.
 
 ## v0.5.0 (pre-release)
 

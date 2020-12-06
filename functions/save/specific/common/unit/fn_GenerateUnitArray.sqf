@@ -126,6 +126,7 @@ _unitArray pushBack ["fatigue", getFatigue _unit];
 _unitArray pushBack ["formationDir", formationDirection _unit];
 _unitArray pushBack ["variables", [_unit] call _GenerateVariablesArray];
 _unitArray pushBack ["orders", [_unit] call _GenerateOrdersArray];
+_unitArray pushBack ["assignedTeam", assignedTeam _unit];
 
 if (vehicle _unit != _unit) then
 {
