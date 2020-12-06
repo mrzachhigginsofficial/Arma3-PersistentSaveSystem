@@ -71,7 +71,12 @@ private _GenerateVariablesArray =
     private _variablesArray = [];
 
     {
-        _variablesArray pushBack [_x, _unit getVariable _x];
+        private _splittedKey = _x splitString '_';
+
+        if (_splittedKey # 0 != 'cba') then
+        {
+            _variablesArray pushBack [_x, _unit getVariable _x];
+        };
     } forEach (allVariables _unit);
 
     _variablesArray;

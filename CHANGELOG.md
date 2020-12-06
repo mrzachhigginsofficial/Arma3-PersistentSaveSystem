@@ -3,6 +3,7 @@
 ## v.0.6.0 (pre-release)
 
 - Added before & after event handlers for save / load.
+- Removed storing CBA variables from unit.
 
 ## v0.5.0 (pre-release)
 
