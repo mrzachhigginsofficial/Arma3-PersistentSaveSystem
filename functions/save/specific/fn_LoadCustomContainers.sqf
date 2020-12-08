@@ -11,8 +11,9 @@ private _containers = ["containers", _slot] call skhpersist_fnc_LoadData;
 
 {
     deleteVehicle _x;
-    PSave_CustomContainersToSave deleteAt _forEachIndex;
 } forEach PSave_CustomContainersToSave;
+
+[PSave_CustomContainersToSave] call skhpersist_fnc_ClearArray;
 
 {
     private _class = [_x, "class"] call skhpersist_fnc_GetByKey;

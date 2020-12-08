@@ -10,12 +10,19 @@ params ["_slot"];
 private _units = ["units", _slot] call skhpersist_fnc_LoadData;
 
 {
-    {
-        deleteVehicle _x;
-    } forEach (units _x);
+    private _leader = leader group _x;
 
-    PSave_CustomUnitsToSave deleteAt _forEachIndex;
+    {
+        if (_x != _leader) then
+        {
+            deleteVehicle _x;
+        };
+    } forEach (units _leader);
+
+    deleteVehicle _leader;
 } forEach PSave_CustomUnitsToSave;
+
+[PSave_CustomUnitsToSave] call skhpersist_fnc_ClearArray;
 
 {
     private _unit = [nil, _x, nil] call skhpersist_fnc_LoadUnitData;

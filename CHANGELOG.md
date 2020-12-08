@@ -5,6 +5,7 @@
 - Added before & after event handlers for save / load.
 - Removed storing CBA variables from unit.
 - Added storing and restoring assigned team color.
+- Fixed problem with units duplication on load (and possibly other things, such as vehicles and containers).
 
 ## v0.5.0 (pre-release)
 

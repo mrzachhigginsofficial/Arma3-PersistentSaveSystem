@@ -112,6 +112,7 @@ class CfgFunctions
 		class save_utils_arrays
 		{
 		    file = "functions\save\utils\arrays";
+			class ClearArray {};
 		    class GetByKey {};
 		};
 		

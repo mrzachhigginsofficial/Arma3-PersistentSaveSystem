@@ -9,9 +9,7 @@ params ["_slot"];
 
 private _allVariables = ["variables", _slot] call skhpersist_fnc_LoadData;
 
-{
-	PSave_CustomVariablesToSave deleteAt _forEachIndex;
-} forEach PSave_CustomVariablesToSave;
+[PSave_CustomVariablesToSave] call skhpersist_fnc_ClearArray;
 
 {
 	private _namespace = _x # 0;
