@@ -213,7 +213,7 @@ if (!(isNil { _leader })) then
     doStop _unit;
 };
 
-[_unit, _vehicle] call _AddUnitToAssignedVehicleIfNecessary;
+[_unit, _vehicle] spawn _AddUnitToAssignedVehicleIfNecessary;
 
 [_unit, _unitData] spawn {
     params ["_unit", "_unitData"];
