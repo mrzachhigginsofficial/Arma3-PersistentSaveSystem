@@ -1,3 +1,10 @@
+This is a forked repo from the following project: https://gitlab.com/sukhoi191_a3/arma-3-persistent-save-system, by sukhoi191_a3 (https://gitlab.com/sukhoi191_a3).
+
+I'm just making some adjustments to this one as needed to incorporate it into my primary mod.
+
+--------------------------------------
+
+
 # ArmA 3 - Persistent Save System
 
 ## Goal
